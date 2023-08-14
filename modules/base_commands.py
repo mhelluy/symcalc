@@ -78,6 +78,7 @@ class BaseCommands:
     def func(self,var,value,x=None):
         self.brd.register_function(var,x)
         res = self.brd.exec_func(var,value,x)
+        self.current = "$"
         return var+"("+str(res[0])+")", res[1]
 
     def exit(self):

@@ -77,7 +77,10 @@ class Board:
     def exec_func(self,var,val,x=None):
         if x is None:
             x = [key for key in self.functions if key[0] == var][0][1]
-        return sympify(val,locals=self.vars),self.functions[var,x](sympify(val,locals=self.vars))
+        ant = sympify(val,locals=self.vars)
+        value = self.functions[var,x](ant)
+        self.vars["$"] = value
+        return ant,value
 
     def solve(self,expr1,expr2,var=None):
         if type(expr1) is str:
