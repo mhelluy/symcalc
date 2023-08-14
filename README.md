@@ -50,9 +50,6 @@ x  - x - 6
 >>> !expand
  2
 x  - x - 4
->>> !factor
- 2
-x  - x - 4
 >>> (a-b)(a+b)
 (a - b)⋅(a + b)
 >>> !expand
@@ -62,10 +59,6 @@ a  - b
 
 ## Use expressions
 ```
->>> A = (x-1)(x+3)
-A = (x - 1)⋅(x + 3)
->>> !simp  
-A = (x - 1)⋅(x + 3)
 >>> A = (x-1)(x+3)
 A = (x - 1)⋅(x + 3)
 >>> !expand
