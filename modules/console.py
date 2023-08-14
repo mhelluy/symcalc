@@ -6,6 +6,7 @@ from modules.board import Board
 from modules.tools import pretty
 import re
 
+
 class Console:
     def __init__(self,cmds,brd,prt=print,inp=input) -> None:
         self.cmds = cmds
@@ -17,7 +18,10 @@ class Console:
         self.prt("SYMCALC v1.0")
         self.running = True
         while self.running:
-            cmd = self.inp(">>> ").strip()
+            try:
+                cmd = self.inp(">>> ").strip()
+            except KeyboardInterrupt:
+                cmd = "!exit"
             if cmd:
                 try:
                     res = self.parse(cmd)
