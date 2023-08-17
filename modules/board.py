@@ -23,6 +23,10 @@ class Board:
             self.vars[var] = sympify(value,locals=self.vars)
         else:
             self.vars[var] = value
+
+        for key in self.functions:
+            if key[0] == var:
+                del self.functions[key]
         return var,self.vars[var]
     
     def add(self,var,value):
@@ -70,9 +74,10 @@ class Board:
     
     def register_function(self,var,x=None):
         if x is None:
-            x = str(self.vars[var])[re.search(r"[\$a-zA-Z]",str(self.vars[var])).start()]
+            chn = re.sub(r"(?:sqrt|cos|sin|tan)\(","",str(self.vars[var]))
+            x = chn[re.search(r"[\$a-zA-Z]",chn).start()]
         if (var,x) not in self.functions:
-            self.functions[var,x] = sp.lambdify(x,self.vars[var])
+            self.functions[var,x] = sp.lambdify(x,self.vars[var],["sympy"])
 
     def exec_func(self,var,val,x=None):
         if x is None:
@@ -90,4 +95,11 @@ class Board:
         if var is None:
             var = str(expr1)[re.search(r"[\$a-zA-Z]",str(expr1)).start()]
         return sp.solve(expr1-expr2,var)
+    
+    def reduce_ineq(self,expr,var=None):
+        if type(expr) is str:
+            expr = sympify(expr,locals=self.vars)
+        if var is None:
+            var = str(expr)[re.search(r"[\$a-zA-Z]",str(expr)).start()]
+        return sp.reduce_inequalities(expr,var)
     

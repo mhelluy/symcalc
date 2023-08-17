@@ -101,7 +101,7 @@ C(x**2) = 2⋅x  + 13⋅x  + 4
 2⋅x  + 13⋅x  + 5
 ```
 
-## Solve equations
+## Solve equations and reduce inequalities
 Use `==` between two expressions to solve equations :
 ```
    4       2
@@ -114,4 +114,12 @@ D = 2⋅x  + 13⋅x  + 5
       ⎢      ╱ 13   √201        ╱ 13   √201       ╱   13   √201      ╱   13   √201 ⎥
       ⎢-ⅈ⋅  ╱  ── + ──── , ⅈ⋅  ╱  ── + ──── , -  ╱  - ── + ──── ,   ╱  - ── + ──── ⎥
 _S_ = ⎣   ╲╱   4     4       ╲╱   4     4      ╲╱     4     4     ╲╱     4     4   ⎦
+```
+Use `>`, `<`, `>=`, or `<=`, between two expressions to reduce inequalities :
+```
+>>> sqrt(x+1) > sqrt(2x^2+x)
+
+⎛            √2⎞   ⎛           -√2     ⎞
+⎜0 ≤ x ∧ x < ──⎟ ∨ ⎜x ≤ -1/2 ∧ ──── < x
+⎝            2 ⎠   ⎝            2      ⎠
 ```

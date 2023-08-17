@@ -64,6 +64,7 @@ class BaseCommands:
         if var is None:
             var = self.current
         return var,self.brd.simplify(var)
+    simp = simplify
     
     def factor(self,var=None):
         if var is None:
@@ -73,7 +74,9 @@ class BaseCommands:
 
     def solve(self,expr1,expr2,var=None):
         return "_S_",self.brd.solve(expr1,expr2,var)
-    simp = simplify
+    
+    def reduce_ineq(self,expr,var=None):
+        return "",self.brd.reduce_ineq(expr,var)
 
     def func(self,var,value,x=None):
         self.brd.register_function(var,x)

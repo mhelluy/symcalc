@@ -28,7 +28,7 @@ class Console:
                     if res[0] == 0:
                         retour = pretty(res[1])
                         self.running = False
-                    elif res[0] in (0,"$"):
+                    elif res[0] in (0,"$",""):
                         retour = pretty(res[1])
                     else:
                         retour = pretty(res[1],ante=res[0]+" = ")
@@ -56,6 +56,9 @@ class Console:
             match = re.match(r"^([\S\s]+)={2}([\S\s]+)$",cmd)
             if match:
                 return self.cmds.solve(match.group(1).strip(),match.group(2).strip())
+            match = re.match(r"^([\S\s]+[><]\=?[\S\s]+)$",cmd)
+            if match:
+                return self.cmds.reduce_ineq(match.group(1).strip())
             match = re.match(r"^([\S\s]+)=([\S\s]+)$",cmd)
             if match:
                 return self.cmds.set(match.group(1).strip(),match.group(2).strip())
